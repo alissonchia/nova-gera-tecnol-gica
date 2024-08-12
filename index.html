@@ -1,20 +1,195 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Nova hera tecnológica</title>
+    <title>Nova Era Tecnológica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Fundo preto */
+            color: #ffffff; /* Texto branco para contraste */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .quiz-container {
+            background-color: #1e1e1e; /* Fundo cinza escuro para o contêiner */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .main-title {
+            color: #d0ff00; /* Verde-limão */
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        h3 {
+            font-family: 'Roboto Mono', monospace; /* Fonte monoespaçada para perguntas */
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .option {
+            margin: 5px 0;
+            background-color: #00796b; /* Verde escuro */
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            font-family: 'Roboto', sans-serif; /* Fonte padrão para opções */
+        }
+        .option:hover {
+            background-color: #004d40; /* Verde mais escuro */
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .nav-button {
+            background-color: #00796b; /* Verde escuro */
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            margin: 5px;
+            display: inline-block;
+        }
+        .nav-button:hover {
+            background-color: #004d40; /* Verde mais escuro */
+        }
+        #final-story {
+            font-family: 'Roboto Mono', monospace; /* Fonte monoespaçada para destaque final */
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #e0e0e0; /* Cor clara para melhor leitura */
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="caixa-principal">
-        <h1>Nova hera tecnológica</h1>
-        <div class="caixa-perguntas"></div>
-        <div class="caixa-alternativas"></div>
-        <div class="caixa-resultado">
-            <p class="texto-resultado"></p>
+    <div class="quiz-container">
+
+        <div class="main-title">Nova Era Tecnológica</div>
+
+        <!-- Pergunta 1 -->
+        <div id="question-1" class="question active">
+            <h3>Você está caminhando por uma cidade futurista quando se depara com uma loja de tecnologias inovadoras. Em uma vitrine, você vê um dispositivo que promete mudar o futuro da humanidade. Qual é a sua reação?</h3>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(1, 'maravilhado')">Estou maravilhado! Quero saber tudo sobre isso.</div>
+                <div class="option" onclick="selectAnswer(1, 'cauteloso')">Isso parece arriscado. Melhor não me envolver.</div>
+            </div>
+            <div class="navigation">
+                <span id="back-button" class="nav-button" style="display: none;" onclick="previousQuestion()">Voltar</span>
+            </div>
         </div>
+
+        <!-- Pergunta 2 -->
+        <div id="question-2" class="question">
+            <h3>Você decide explorar mais e encontra o dispositivo ativado, mostrando um futuro onde a tecnologia resolve problemas globais. Qual desses avanços você considera mais empolgante?</h3>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(2, 'saude')">A erradicação de doenças e a melhoria na qualidade de vida.</div>
+                <div class="option" onclick="selectAnswer(2, 'sustentabilidade')">A criação de uma rede global de cidades sustentáveis e ecológicas.</div>
+            </div>
+            <div class="navigation">
+                <span id="back-button" class="nav-button" onclick="previousQuestion()">Voltar</span>
+            </div>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div id="question-3" class="question">
+            <h3>O dispositivo também pode alterar eventos passados. Você vê como isso poderia corrigir grandes injustiças. Qual é sua opinião sobre esse poder?</h3>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(3, 'corrigir')">Pode ser uma chance para corrigir erros históricos e promover a justiça.</div>
+                <div class="option" onclick="selectAnswer(3, 'confuso')">Isso pode gerar muita confusão e instabilidade, causando mais problemas do que soluções.</div>
+            </div>
+            <div class="navigation">
+                <span id="back-button" class="nav-button" onclick="previousQuestion()">Voltar</span>
+            </div>
+        </div>
+
+        <!-- Pergunta 4 -->
+        <div id="question-4" class="question">
+            <h3>Você agora tem a oportunidade de usar o dispositivo para fazer uma escolha que impactará sua vida. O que você escolheria?</h3>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(4, 'pessoal')">Focar em melhorar minha vida pessoal e relacionamentos.</div>
+                <div class="option" onclick="selectAnswer(4, 'global')">Usar o dispositivo para promover o bem-estar global e solucionar problemas maiores.</div>
+            </div>
+            <div class="navigation">
+                <span id="back-button" class="nav-button" onclick="previousQuestion()">Voltar</span>
+            </div>
+        </div>
+
+        <!-- História Final -->
+        <div id="question-5" class="question">
+            <h3 id="final-story">Após explorar o dispositivo, você é transportado para uma nova dimensão onde a tecnologia evoluiu de formas incríveis. A cidade onde você se encontra é um exemplo perfeito de como a tecnologia pode criar uma sociedade ideal. As ruas estão repletas de soluções inovadoras para problemas antigos e as pessoas vivem em harmonia. Com o tempo, você se adapta à nova realidade e começa a contribuir para a melhoria contínua da cidade. Sua influência se torna fundamental na criação de novas tecnologias que ajudam a manter o equilíbrio e a prosperidade da sociedade. Você se torna um líder respeitado, conhecido por sua sabedoria e visão futurista, ajudando a moldar um futuro brilhante para todos os habitantes da nova era tecnológica.</h3>
+            <div class="navigation">
+                <span id="back-button" class="nav-button" onclick="previousQuestion()">Voltar</span>
+            </div>
+        </div>
+
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        let currentQuestion = 1;
+
+        function selectAnswer(questionNumber, answer) {
+            document.getElementById('question-' + questionNumber).classList.remove('active');
+            const nextQuestionNumber = questionNumber + 1;
+            if (nextQuestionNumber <= 5) {
+                document.getElementById('question-' + nextQuestionNumber).classList.add('active');
+                currentQuestion = nextQuestionNumber;
+                updateNavigationButtons();
+            } else {
+                showFinalStory();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                document.getElementById('question-' + currentQuestion).classList.remove('active');
+                document.getElementById('question-' + (currentQuestion - 1)).classList.add('active');
+                currentQuestion = currentQuestion - 1;
+                updateNavigationButtons();
+            }
+        }
+
+        function showFinalStory() {
+            document.getElementById('final-story').innerHTML = 'Após explorar o dispositivo, você é transportado para uma nova dimensão onde a tecnologia evoluiu de formas incríveis. A cidade onde você se encontra é um exemplo perfeito de como a tecnologia pode criar uma sociedade ideal. As ruas estão repletas de soluções inovadoras para problemas antigos e as pessoas vivem em harmonia. Com o tempo, você se adapta à nova realidade e começa a contribuir para a melhoria contínua da cidade. Sua influência se torna fundamental na criação de novas tecnologias que ajudam a manter o equilíbrio e a prosperidade da sociedade. Você se torna um líder respeitado, conhecido por sua sabedoria e visão futurista, ajudando a moldar um futuro brilhante para todos os habitantes da nova era tecnológica.';
+            document.getElementById('question-5').classList.add('active');
+            document.getElementById('back-button').style.display = 'none'; // Oculta o botão de voltar na página final
+        }
+
+        function updateNavigationButtons() {
+            const backButton = document.getElementById('back-button');
+            if (currentQuestion > 1) {
+                backButton.style.display = 'inline-block';
+            } else {
+                backButton.style.display = 'none';
+            }
+        }
+
+        updateNavigationButtons(); // Inicializa o estado dos botões
+    </script>
 </body>
 </html>
+
